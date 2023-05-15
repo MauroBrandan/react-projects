@@ -8,5 +8,27 @@
 	},
 	"keywords": [],
 	"author": "maurobrandan.mb@gmail.com",
-	"license": "ISC"
+	"license": "ISC",
+	"devDependencies": {
+		"standard": "^17.0.0"
+	},
+	"eslintConfig": {
+		"extends": "./node_modules/standard/eslintrc.json",
+		"rules": {
+			"indent": [
+				"error",
+				"tab"
+			],
+			"no-tabs": [
+				"error",
+				{
+					"allowIndentationTabs": true
+				}
+			],
+			"react/jsx-indent": [
+				2,
+				"tab"
+			]
+		}
+	}
 }
