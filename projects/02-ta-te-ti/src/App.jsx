@@ -5,11 +5,18 @@ import { Square } from './components/Square'
 import { WinnerModal } from './components/WinnerModal'
 import { TURNS } from './constants'
 import { checkWinnerFrom, checkIsFull } from './logic/board'
+import { saveGameToStorage, resetGameStorage } from './logic/storage'
 import './App.css'
 
 function App() {
-	const [board, setBoard] = useState(Array(9).fill(null))
-	const [turn, setTurn] = useState(TURNS.X)
+	const [board, setBoard] = useState(() => {
+		const boardFromStorage = window.localStorage.getItem('board')
+		return boardFromStorage ? JSON.parse(boardFromStorage) : Array(9).fill(null)
+	})
+	const [turn, setTurn] = useState(() => {
+		const turnFromStorage = window.localStorage.getItem('turn')
+		return turnFromStorage ?? TURNS.X
+	})
 	const [winner, setWinner] = useState(null) // null: there isn't winner | false: there's a tie
 
 	const updateBoard = (index) => {
@@ -39,12 +46,17 @@ function App() {
 		// change turn
 		const newTurn = turn === TURNS.X ? TURNS.O : TURNS.X
 		setTurn(newTurn)
+
+		// save game
+		saveGameToStorage(newBoard, newTurn)
 	}
 
 	const resetGame = () => {
 		setBoard(Array(9).fill(null))
 		setTurn(TURNS.X)
 		setWinner(null)
+
+		resetGameStorage()
 	}
 
 	return (
