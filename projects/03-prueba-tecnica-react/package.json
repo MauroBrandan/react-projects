@@ -1,0 +1,19 @@
+{
+  "name": "03-prueba-tecnica-react",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^4.3.2"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "4.0.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  }
+}
