@@ -1,33 +1,20 @@
-import { useState, useEffect } from 'react'
 import './App.css'
+import { useFacts } from './hooks/useFacts'
+import { useCatImage } from './hooks/useCatImage'
 
 export default function App () {
-	const [fact, setFact] = useState('')
-	const [firstWord, setFirstWord] = useState('')
-	const [loading, setloading] = useState(false)
-
-	useEffect(() => {
-		if (!loading) return
-
-		fetch('https://catfact.ninja/fact')
-			.then(res => res.json())
-			.then(({ fact }) => {
-				const word = fact.split(' ')[0]
-				setFact(fact)
-				setFirstWord(word)
-				setloading(false)
-			})
-	}, [loading])
+	const { fact, loading, refreshFact } = useFacts()
+	const { imageUrl } = useCatImage({ fact })
 
 	return (
 		<main>
 			<h1>Cat Facts</h1>
 			<section>
 				<p>{loading ? 'Loading...' : fact}</p>
-				<button onClick={() => setloading(true)}>Random fact</button>
+				<button onClick={refreshFact}>Random fact</button>
 			</section>
 			<section>
-				{firstWord && !loading && <img src={`https://cataas.com/cat/says/${firstWord}`} alt='cat image' />}
+				{imageUrl && !loading && <img src={imageUrl} alt='Cat image with words of a random fact of cats' />}
 			</section>
 		</main>
 	)
