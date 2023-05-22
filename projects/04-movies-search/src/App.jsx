@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import './App.css'
 import MoviesList from './components/MoviesList'
 import { getMovies } from './services/movies'
@@ -8,6 +8,7 @@ function App () {
 	const [movies, setMovies] = useState([])
 	const [loading, setLoading] = useState(false)
 	const [error, setError] = useState('')
+	const previousInputText = useRef(inputText)
 
 	const handleChange = (e) => {
 		setInputText(e.target.value)
@@ -15,7 +16,11 @@ function App () {
 
 	const handleSubmit = (e) => {
 		e.preventDefault()
+
 		if (!inputText) return
+		if (inputText === previousInputText.current) return
+
+		previousInputText.current = inputText
 
 		setLoading(true)
 		setError('')
