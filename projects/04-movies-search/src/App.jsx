@@ -1,17 +1,20 @@
 import { useState, useRef } from 'react'
+
 import './App.css'
 import MoviesList from './components/MoviesList'
-import { getMovies } from './services/movies'
+import { useMovies } from './hooks/useMovies'
 
 function App () {
 	const [inputText, setInputText] = useState('')
-	const [movies, setMovies] = useState([])
-	const [loading, setLoading] = useState(false)
-	const [error, setError] = useState('')
+	const { movies, searchMovies, debouncedSearchMovies, loading, error } = useMovies()
 	const previousInputText = useRef(inputText)
 
 	const handleChange = (e) => {
-		setInputText(e.target.value)
+		const newSearch = e.target.value
+		previousInputText.current = newSearch
+
+		setInputText(newSearch)
+		debouncedSearchMovies(newSearch)
 	}
 
 	const handleSubmit = (e) => {
@@ -22,13 +25,7 @@ function App () {
 
 		previousInputText.current = inputText
 
-		setLoading(true)
-		setError('')
-
-		getMovies(inputText)
-			.then(movies => setMovies(movies))
-			.catch(err => setError(err))
-			.finally(() => setLoading(false))
+		searchMovies(inputText)
 	}
 
 	return (
