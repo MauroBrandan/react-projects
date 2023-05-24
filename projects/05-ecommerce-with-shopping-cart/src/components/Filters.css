@@ -1,0 +1,10 @@
+.filters form {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+}
+
+.filters form > div {
+	display: flex;
+	gap: 12px;
+}
