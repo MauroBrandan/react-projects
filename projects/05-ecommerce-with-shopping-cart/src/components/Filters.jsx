@@ -1,15 +1,15 @@
-import { useId, useState } from 'react'
+import { useId } from 'react'
 import './Filters.css'
 import { categories } from '../mocks/products.json'
+import { useFilters } from '../hooks/useFilters'
 
-export function Filters ({ setFilters }) {
-	const [minPrice, setMinPrice] = useState(0)
+export function Filters () {
+	const { filters, setFilters } = useFilters()
 	const minPriceFilterId = useId()
 	const categoryFilterId = useId()
 
 	const handleChangeMinPrice = (e) => {
 		const newMinPrice = e.target.value
-		setMinPrice(newMinPrice)
 
 		setFilters((prevFilters) => (
 			{
@@ -35,8 +35,8 @@ export function Filters ({ setFilters }) {
 			<form>
 				<div>
 					<label htmlFor={minPriceFilterId}>Min price</label>
-					<input type='range' id={minPriceFilterId} min={0} max={1500} onChange={handleChangeMinPrice} />
-					<span>${minPrice}</span>
+					<input type='range' id={minPriceFilterId} min={0} max={1500} value={filters.minPrice} onChange={handleChangeMinPrice} />
+					<span>${filters.minPrice}</span>
 				</div>
 				<div>
 					<label htmlFor={categoryFilterId}>Category</label>
