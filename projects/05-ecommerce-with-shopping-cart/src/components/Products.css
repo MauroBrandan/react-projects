@@ -39,3 +39,32 @@
 	object-fit: cover;
 	background: #fff;
 }
+
+.products button{
+	transition: background-color 0.3s ease;
+}
+
+.products button:focus{
+	outline: none;
+}
+
+.products button.add svg{
+	stroke: #0099FF;
+}
+
+.products button.remove svg{
+	stroke: rgba(255, 0, 0, 0.5);
+}
+
+.products button:hover > svg{
+	stroke: #fff;
+}
+
+.products button.add:hover{
+	background-color: #0099FF;
+}
+
+.products button.remove:hover{
+	background-color: rgba(255, 0, 0, 0.5);
+
+}
