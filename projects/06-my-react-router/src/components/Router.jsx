@@ -1,9 +1,10 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Children } from 'react'
 import { match } from 'path-to-regexp'
 import { EVENTS } from '../utils/consts'
 
-export default function Router ({ routes = [], defaultComponent: DefaultComponent = () => <h1>404</h1> }) {
+export function Router ({ children, routes = [], defaultComponent: DefaultComponent = () => <h1>404</h1> }) {
 	const [currentPath, setCurrentPath] = useState(window.location.pathname)
+	let routeParams = {}
 
 	// When the path changes
 	useEffect(() => {
@@ -20,9 +21,16 @@ export default function Router ({ routes = [], defaultComponent: DefaultComponen
 		}
 	}, [])
 
-	let routeParams = {}
+	// Add routes from children <Route /> components
+	const routesFromChildren = Children.map(children, (child) => {
+		const { props, type } = child
+		const isRoute = type.name === 'Route'
+		return isRoute ? props : null
+	})
 
-	const route = routes.find(route => {
+	const routesToUse = routes.concat(routesFromChildren)
+
+	const route = routesToUse.find(route => {
 		if (route.path === currentPath) return true
 
 		// path-to-regexp to support routes with dynamic parameters
