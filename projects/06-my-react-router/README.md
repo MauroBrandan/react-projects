@@ -6,7 +6,7 @@
 - [✔] Crear componente `Link` para hacerlo declarativo
 - [✔] Crear componente `Router` para hacerlo más declarativo
 - [✔] Soportar ruta por defecto (404)
-- [] Soportar rutas con parámetros
+- [✔] Soportar rutas con parámetros
 - [] Componente `<Route />` para hacerlo declarativo
 - [] Lazy Loading de las rutas
 - [] Hacer un i18n con las rutas
