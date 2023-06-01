@@ -9,5 +9,5 @@
 - [✔] Soportar rutas con parámetros
 - [✔] Componente `<Route />` para hacerlo declarativo
 - [✔] Lazy Loading de las rutas
-- [] Testing
+- [✔] Testing
 - [] **Publicar el paquete en NPM**
