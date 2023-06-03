@@ -1,22 +1,35 @@
 {
-	"name": "06-my-react-router",
-	"private": true,
-	"version": "0.0.0",
+	"name": "mb-router",
+	"version": "0.0.1",
 	"type": "module",
+	"main": "lib/index.js",
+	"module": "lib/index.js",
+	"exports": {
+		".": {
+			"import": "./lib/index.js",
+			"require": "./lib/index.js"
+		},
+		"./package.json": "./package.json"
+	},
 	"scripts": {
 		"dev": "vite",
 		"build": "vite build",
 		"lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
 		"preview": "vite preview",
 		"test": "vitest",
-		"test:ui": "vitest --ui"
+		"test:ui": "vitest --ui",
+		"prepare": "npx swc ./src/components/*.jsx ./src/utils/*.js -d lib"
 	},
 	"dependencies": {
-		"path-to-regexp": "6.2.1",
-		"react": "^18.2.0",
-		"react-dom": "^18.2.0"
+		"path-to-regexp": "6.2.1"
+	},
+	"peerDependencies": {
+		"react": "18.2.0",
+		"react-dom": "18.2.0"
 	},
 	"devDependencies": {
+		"@swc/cli": "^0.1.62",
+		"@swc/core": "^1.3.62",
 		"@testing-library/react": "^14.0.0",
 		"@types/react": "^18.0.37",
 		"@types/react-dom": "^18.0.11",
@@ -27,6 +40,8 @@
 		"eslint-plugin-react-hooks": "^4.6.0",
 		"eslint-plugin-react-refresh": "^0.3.4",
 		"happy-dom": "^9.20.3",
+		"react": "18.2.0",
+		"react-dom": "18.2.0",
 		"vite": "^4.3.9",
 		"vitest": "^0.31.4"
 	},
