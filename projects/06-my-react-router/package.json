@@ -1,6 +1,6 @@
 {
-	"name": "mb-router",
-	"version": "0.0.1",
+	"name": "maurobrandan-router",
+	"version": "0.0.2",
 	"type": "module",
 	"main": "lib/index.js",
 	"module": "lib/index.js",
