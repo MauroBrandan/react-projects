@@ -10,7 +10,7 @@
 - [✔] Componente `<Route />` para hacerlo declarativo
 - [✔] Lazy Loading de las rutas
 - [✔] Testing
-- [✔] **Publicar el paquete en NPM**
+- [✔] **Publicar el paquete en NPM**: https://www.npmjs.com/package/maurobrandan-router
 
 # Uso
 
