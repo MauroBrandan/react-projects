@@ -22,7 +22,7 @@ export function UserTable ({ users, showColors }: Props) {
 					const bgColor = (index % 2) === 0 ? '#3f3e3e' : '#505050'
 					const bgStyle = showColors ? bgColor : ''
 					return (
-						<tr key={user.id.value} style={{ backgroundColor: bgStyle }}>
+						<tr key={user.email} style={{ backgroundColor: bgStyle }}>
 							<td>
 								<img src={user.picture.thumbnail} alt={`${user.name.first} ${user.name.last} picture`} />
 							</td>
