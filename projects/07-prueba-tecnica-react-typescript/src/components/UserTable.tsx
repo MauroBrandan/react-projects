@@ -3,9 +3,10 @@ import { type User } from '../types'
 interface Props{
 	users: User[]
 	showColors: boolean
+	deleteUser: (payload: User['email']) => void
 }
 
-export function UserTable ({ users, showColors }: Props) {
+export function UserTable ({ users, showColors, deleteUser }: Props) {
 	return (
 		<table width='100%'>
 			<thead>
@@ -29,7 +30,9 @@ export function UserTable ({ users, showColors }: Props) {
 							<td>{user.name.first}</td>
 							<td>{user.name.last}</td>
 							<td>{user.location.country}</td>
-							<td><button>Delete</button></td>
+							<td>
+								<button onClick={() => deleteUser(user.email)}>Delete</button>
+							</td>
 						</tr>
 
 					)
