@@ -7,12 +7,11 @@ function App () {
 	const [users, setUsers] = useState<User[]>([])
 	const [showColors, setShowColors] = useState(false)
 	const [isSorted, setIsSorted] = useState(false)
+	const [inputValue, setInputValue] = useState('')
 
 	const originalUsers = useRef<User[]>([])
 
-	const btnStyle = (condition: boolean) => ({
-		backgroundColor: condition ? '#646cff' : ''
-	})
+	const btnStyle = (condition: boolean) => ({ backgroundColor: condition ? '#646cff' : '' })
 
 	useEffect(() => {
 		fetch('https://randomuser.me/api/?results=100')
@@ -24,17 +23,27 @@ function App () {
 			.catch(err => console.log(err))
 	}, [])
 
+	const filteredUsers = useMemo(() => {
+		if (inputValue === '') {
+			return users
+		}
+
+		return users.filter(user => {
+			return user.location.country.toLowerCase().includes(inputValue.toLowerCase())
+		})
+	}, [users, inputValue])
+
+	const sortedUsers = useMemo(() => {
+		if (!isSorted) return filteredUsers
+
+		return filteredUsers.toSorted((a, b) => {
+			return a.location.country.localeCompare(b.location.country)
+		})
+	}, [filteredUsers, isSorted])
+
 	const handleShowColors = () => {
 		setShowColors(!showColors)
 	}
-
-	const sortedUsers = useMemo(() => {
-		if (!isSorted) return users
-
-		return users.toSorted((a, b) => {
-			return a.location.country.localeCompare(b.location.country)
-		})
-	}, [users, isSorted])
 
 	const handleOrderByCountry = () => {
 		if (isSorted) {
@@ -62,6 +71,10 @@ function App () {
 				<button onClick={handleShowColors} style={btnStyle(showColors)}>Color rows</button>
 				<button onClick={handleOrderByCountry} style={btnStyle(isSorted)}>Order by country</button>
 				<button onClick={handleResetUsers}>Reset users</button>
+				<div style={{ display: 'flex', flexDirection: 'column' }}>
+					<label htmlFor='searchCountry'>Filter by country</label>
+					<input type='search' name='searchCountry' placeholder='Argentina...' onChange={(e) => setInputValue(e.target.value)} value={inputValue} style={{ height: 8, padding: 12, fontSize: '1em' }} />
+				</div>
 			</header>
 
 			<main>
