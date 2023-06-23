@@ -5,3 +5,41 @@
   text-align: center;
   width: 100%;
 }
+
+header{
+  margin: 32px;
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+}
+
+header div{
+  display: flex;
+  flex-direction: column;
+}
+
+header div input{
+  height: 8px;
+  padding: 16px;
+  font-size: 1em;
+  border: none;
+  border-radius: 12px;
+}
+
+button.active{
+  background-color: #646cff;
+}
+
+.table-column-click{
+  border: 1px solid transparent;
+  transition: border-color 0.25s;
+}
+
+.table-column-click:hover{
+  cursor: pointer;
+  border: 1px solid #646cff;
+}
+
+.table-column-click.active{
+  border: 1px solid #646cff;
+}
