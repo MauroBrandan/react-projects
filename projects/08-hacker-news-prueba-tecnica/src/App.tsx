@@ -3,7 +3,7 @@ import { Header } from './components/Header'
 import { Route } from 'wouter'
 
 const TopStoriesPage = lazy(() => import('./pages/TopStoriesPage'))
-const StoryPage = lazy(() => import('./pages/StoryPage'))
+const StoryCommentsPage = lazy(() => import('./pages/StoryCommentsPage'))
 
 function App () {
 	return (
@@ -13,7 +13,7 @@ function App () {
 			<main>
 				<Suspense>
 					<Route path='/' component={TopStoriesPage} />
-					<Route path='/article/:id' component={StoryPage} />
+					<Route path='/article/:id' component={StoryCommentsPage} />
 				</Suspense>
 			</main>
 		</>
