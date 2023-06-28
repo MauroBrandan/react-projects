@@ -1,6 +1,7 @@
 import useSWR from 'swr'
 import { Link } from 'wouter'
 import { getItemInfo } from '../services/hacker-news'
+import { getRelativeTime } from '../utils/getRelativeTime'
 import { StoryLoader } from './StoryLoader'
 import { story, storyHeader, storyFooter, storyLink, storyTitle } from './Story.css'
 
@@ -16,9 +17,9 @@ export function Story ({ id, index }: Props) {
 		return <StoryLoader />
 	}
 
-	const { by, kids, score, title, url } = data
+	const { by, kids, score, title, url, time } = data
 
-	// ToDo: Relative time
+	const relativeTime = getRelativeTime(time)
 
 	return (
 		<article className={story}>
@@ -34,7 +35,7 @@ export function Story ({ id, index }: Props) {
 					by {by}
 				</Link>
 				<Link className={storyLink} href={`/article/${id}`}>
-					5 hours ago
+					{relativeTime}
 				</Link>
 				<Link className={storyLink} href={`/article/${id}`}>
 					{kids?.length ?? 0} comments

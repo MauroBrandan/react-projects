@@ -19,9 +19,9 @@ You may use any additional libraries you deem necessary. (remember respecting ne
 
 ✅ Part 4: Ensure scroll to the bottom every time new stories are loaded.
 
-Part 5: Make API calls to fetch comments to fail 75% of the times, and handle the error gracefully.
+✅ Part 5: Make API calls to fetch comments to fail 75% of the times, and handle the error gracefully.
 
 ## Evaluation Criteria:
 
-- Please ensure that your code is properly organized, and easy to read
-- Reuse as much code as possible
+- Please ensure that your code is properly organized, and easy to read ✅
+- Reuse as much code as possible ✅
