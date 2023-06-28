@@ -20,3 +20,16 @@ body {
 li {
 	list-style: none;
 }
+
+button {
+	padding: 8px;
+	color: #eee;
+	background-color: #ff6600;
+	border: none;
+	border-radius: 12px;
+	cursor: pointer;
+}
+
+section {
+	padding-bottom: 24px;
+}

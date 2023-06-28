@@ -15,9 +15,9 @@
 Fetch and display the first 10 comments and their children using the Hacker News API.
 You may use any additional libraries you deem necessary. (remember respecting nested comments)
 
-Part 3: Implement an infinite scroll for top stories by using a "Load more" button.
+✅ Part 3: Implement an infinite scroll for top stories by using a "Load more" button.
 
-Part 4: Ensure scroll to the bottom every time new stories are loaded.
+✅ Part 4: Ensure scroll to the bottom every time new stories are loaded.
 
 Part 5: Make API calls to fetch comments to fail 75% of the times, and handle the error gracefully.
 
